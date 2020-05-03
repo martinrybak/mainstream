@@ -26,26 +26,26 @@ class MainStream<T> extends StreamBuilderBase<T, AsyncSnapshot<T>> {
         super(key: key, stream: stream);
 
   @override
-  AsyncSnapshot<T> initial() => AsyncSnapshot<T>.withData(ConnectionState.none, this.initialData);
+  AsyncSnapshot<T> initial() => AsyncSnapshot<T>.withData(ConnectionState.none, initialData);
 
   @override
   AsyncSnapshot<T> afterConnected(AsyncSnapshot<T> current) => current.inState(ConnectionState.waiting);
 
   @override
   AsyncSnapshot<T> afterData(AsyncSnapshot<T> current, T data) {
-    if (this.onData != null) this.onData(data);
+    if (onData != null) onData(data);
     return AsyncSnapshot<T>.withData(ConnectionState.active, data);
   }
 
   @override
   AsyncSnapshot<T> afterError(AsyncSnapshot<T> current, Object error) {
-    if (this.onError != null) this.onError(error);
+    if (onError != null) onError(error);
     return AsyncSnapshot<T>.withError(ConnectionState.active, error);
   }
 
   @override
   AsyncSnapshot<T> afterDone(AsyncSnapshot<T> current) {
-    if (this.onDone != null) this.onDone();
+    if (onDone != null) onDone();
     return current.inState(ConnectionState.done);
   }
 
@@ -66,18 +66,18 @@ class MainStream<T> extends StreamBuilderBase<T, AsyncSnapshot<T>> {
   }
 
   Widget _handleBusy(BuildContext context) {
-    if (this.initialData != null) {
-      return _handleData(context, this.initialData);
+    if (initialData != null) {
+      return _handleData(context, initialData);
     }
-    if (this.busyBuilder == null) {
+    if (busyBuilder == null) {
       return _defaultBusyWidget();
     }
-    return this.busyBuilder(context);
+    return busyBuilder(context);
   }
 
   Widget _handleData(BuildContext context, T data) {
-    if (this.dataBuilder != null) {
-      return this.dataBuilder(context, data);
+    if (dataBuilder != null) {
+      return dataBuilder(context, data);
     }
     return _defaultWidget();
   }
@@ -90,8 +90,8 @@ class MainStream<T> extends StreamBuilderBase<T, AsyncSnapshot<T>> {
   }
 
   Widget _handleError(BuildContext context, Object error) {
-    if (this.errorBuilder != null) {
-      return this.errorBuilder(context, error);
+    if (errorBuilder != null) {
+      return errorBuilder(context, error);
     }
     return _defaultWidget();
   }
