@@ -8,7 +8,7 @@ A `StreamBuilder` alternative that provides builder and event callbacks.
 
 `StreamBuilder` is one of the most powerful widgets in Flutter. Like `AnimatedBuilder` and `ValueListenableBuilder`, it can be used to selectively rebuild only parts of a widget, which is very efficient.
 
-However `StreamBuilder` does not provide a way to receive callbacks for a Stream's `data`/`error`/`done` events. Often we may want to respond to those events by performing an action. For example, to pop all routes off a `Navigator` after a user logs in or out using `FirebaseAuth`. To do this with a StreamBuilder would require an additional stream listener. However this requires the boilerplate of creating a `StatefulWidget` and canceling our subscription. If our stream is not a broadcast stream (meaning it supports multiple listeners), we would have to avoid using a `StreamBuilder` altogether.
+However `StreamBuilder` does not provide a way to receive callbacks for a Stream's `data`/`error`/`done` events. Often we may want to respond to those events by performing an action. For example, updating a `Navigator`. To do this with a `StreamBuilder` would require an additional stream listener. However this requires the boilerplate of creating a `StatefulWidget` and canceling our subscription. Also, if our stream is not a broadcast stream (meaning it supports multiple listeners), we might have to avoid using a `StreamBuilder` altogether.
 
 ```
 class Home extends StatefulWidget {
@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
 
 ## Solution
 
-The `Mainstream` widget uses the underlying `StreamBuilderBase` used by `StreamBuilder` to expose additional `onData`/`onError`/`onDone` callbacks. It also uses builder callbacks to provide mutually exclusive `busy/data/error` widget states.
+The `Mainstream` widget uses the same underlying `StreamBuilderBase` used by `StreamBuilder` but also exposes additional `onData`/`onError`/`onDone` callbacks. It also uses builder callbacks to provide mutually exclusive `busy/data/error` widget states.
 
 ```
 class Home extends StatelessWidget {
@@ -91,8 +91,8 @@ The optional `dataBuilder` displays a widget when the Stream's last event it a s
 
 The optional `errorBuilder` displays a widget when the `Stream` last event is an error, typically an `Error` or `Exception`.
 
-The optional `onData` callback can be used to handle a successful data event, such as displaying an alert dialog or performing navigation. This can be used in place of or together with the `dataBuilder`. This will **not** be retriggered as a result of a widget rebuild.
+The optional `onData` callback can be used to handle a successful data event by displaying an alert dialog or performing navigation, for example. This can be used in place of or together with the `dataBuilder`. This will **not** be retriggered as a result of a widget rebuild.
 
-The optional `onError` callback can be used to handle an error event, such as displaying an alert dialog or sending to a logging provider. It can be used in place of or together with the `errorBuilder`. This will **not** be retriggered as a result of a widget rebuild.
+The optional `onError` callback can be used to handle an error event by displaying an alert dialog or sending to a logging provider, for example. It can be used in place of or together with the `errorBuilder`. This will **not** be retriggered as a result of a widget rebuild.
 
 The optional `onDone` callback can be used to handle a Stream's done event. This will **not** be retriggered as a result of a widget rebuild.
