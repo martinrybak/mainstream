@@ -10,7 +10,7 @@ See the [Futuristic](https://pub.dev/packages/futuristic) package for a similar 
 
 `StreamBuilder` is one of the most powerful widgets in Flutter. Like `AnimatedBuilder` and `ValueListenableBuilder`, it can be used to selectively rebuild only parts of a widget, which is very efficient.
 
-However `StreamBuilder` does not provide a way to receive callbacks for a Stream's `data`/`error`/`done` events. Often we may want to respond to those events by performing an action. For example, updating a `Navigator`. To do this with a `StreamBuilder` would require an additional stream listener. However this requires the boilerplate of creating a `StatefulWidget` and canceling our subscription. Also, if our stream is not a broadcast stream (meaning it supports multiple listeners), we might have to avoid using a `StreamBuilder` altogether.
+However `StreamBuilder` does not provide a way to receive callbacks for a Stream's `data`/`error`/`done` events. Often we may want to respond to those events by performing an action. For example, updating a `Navigator`. Doing this from inside the `builder` callback is unreliable because Flutter can call the `build()` method many times. So we need an additional stream listener. However this requires the boilerplate of creating a `StatefulWidget` and canceling our stream subscription. Also, if our stream is not a broadcast stream (meaning it supports multiple listeners), we might have to avoid using a `StreamBuilder` altogether.
 
 ```
 class Home extends StatefulWidget {
@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
 
 ## Solution
 
-The `Mainstream` widget uses the same underlying `StreamBuilderBase` used by `StreamBuilder` but also exposes additional `onData`/`onError`/`onDone` callbacks. It also uses builder callbacks to provide mutually exclusive `busy/data/error` widget states.
+The `Mainstream` widget uses the same underlying `StreamBuilderBase` used by `StreamBuilder` but also exposes additional `onData`/`onError`/`onDone` callbacks. These callbacks will **not** retriggered as the result of a widget rebuild. It also provides builder callbacks to build mutually exclusive `busy/data/error` widget states.
 
 ```
 class Home extends StatelessWidget {
@@ -63,7 +63,7 @@ class Home extends StatelessWidget {
 ```
 
 * Can be used in a `StatelessWidget`
-* Works with single-subscription streams
+* Works with single-subscription and broadcast streams
 * Provides generic type safety for the `data` provided to callbacks. The type parameter `<T>` can be omitted if it can be inferred by the compiler.
 
 ## Usage
