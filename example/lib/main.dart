@@ -23,7 +23,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: MainStream(
+        child: MainStream<int>(
           stream: myStream,
           onData: (data) => print(data),
           onError: (error) => _showAlert(context, error.toString()),
