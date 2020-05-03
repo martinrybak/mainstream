@@ -66,6 +66,9 @@ class MainStream<T> extends StreamBuilderBase<T, AsyncSnapshot<T>> {
   }
 
   Widget _handleBusy(BuildContext context) {
+    if (this.initialData != null) {
+      return _handleData(context, this.initialData);
+    }
     if (this.busyBuilder == null) {
       return _defaultBusyWidget();
     }
