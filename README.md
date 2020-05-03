@@ -4,6 +4,8 @@ A `StreamBuilder` alternative that provides builder and event callbacks.
 
 ![](screenshot.png)
 
+See the [Futuristic](https://pub.dev/packages/futuristic) package for a similar API for working with `Futures`.
+
 ## Problem
 
 `StreamBuilder` is one of the most powerful widgets in Flutter. Like `AnimatedBuilder` and `ValueListenableBuilder`, it can be used to selectively rebuild only parts of a widget, which is very efficient.
