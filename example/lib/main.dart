@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final myStream = Stream<int>.periodic(Duration(seconds: 1), (x) => (x == 3) ? throw Exception('error') : x).take(5);
+final myStream = Stream<int>.periodic(Duration(seconds: 1), (x) => (x == 3) ? throw Exception('oops') : x).take(5);
 
 class Home extends StatelessWidget {
   @override
