@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+/// A [StreamBuilder] alternative that provides builder and event callbacks.
 class MainStream<T> extends StreamBuilderBase<T, AsyncSnapshot<T>> {
   final ValueChanged<T> onData;
   final ValueChanged<Object> onError;
