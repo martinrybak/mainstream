@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
 
 ## Solution
 
-The `Mainstream` widget uses the same underlying `StreamBuilderBase` used by `StreamBuilder` but also exposes additional `onData`/`onError`/`onDone` callbacks. These callbacks will **not** retriggered as the result of a widget rebuild. It also provides builder callbacks to build mutually exclusive `busy/data/error` widget states.
+The `MainStream` widget uses the same underlying `StreamBuilderBase` used by `StreamBuilder` but also exposes additional `onData`/`onError`/`onDone` callbacks. These callbacks will **not** retriggered as the result of a widget rebuild. It also provides builder callbacks to build mutually exclusive `busy/data/error` widget states.
 
 ```
 class Home extends StatelessWidget {
