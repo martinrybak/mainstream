@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 
 /// A convenience widget for listening to a stream without having
-/// to create a StatefulWidget or canceling a stream subscription.
+/// to create a [StatefulWidget] or canceling a [Stream] subscription.
 /// If [child] is null, an empty [SizedBox] will be used.
 class StreamListener<T> extends StatefulWidget {
   final Stream<T> stream;
