@@ -1,4 +1,4 @@
-## 0.1.2
+## 0.2.0
 
 * Added StreamListener widget
 * Updated readme copy

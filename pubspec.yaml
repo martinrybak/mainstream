@@ -1,6 +1,6 @@
 name: mainstream
 description: A StreamBuilder alternative that provides builder and event callbacks.
-version: 0.1.2
+version: 0.2.0
 author: Martin Rybak <martin.rybak@gmail.com>
 homepage: https://github.com/vgventures/mainstream
 
