@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 class StreamListener<T> extends StatefulWidget {
   final Stream<T> stream;
   final ValueChanged<T> onData;
-  final Function(Object, [StackTrace]) onError;
+  final ValueChanged<Object> onError;
   final VoidCallback onDone;
   final bool cancelOnError;
   final Widget child;
