@@ -1,3 +1,8 @@
+## 0.3.0
+
+* Added support for null safety
+* Replaced pedantic package with flutter_lints
+
 ## 0.2.0
 
 * Added StreamListener widget
