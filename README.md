@@ -15,7 +15,7 @@ However `StreamBuilder` does not provide a way to receive callbacks for a Stream
 ```
 class Home extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
 
 ## Solution
 
-The `MainStream` widget uses the same underlying `StreamBuilderBase` used by `StreamBuilder` but also exposes additional `onData`/`onError`/`onDone` callbacks. These callbacks will **not** retriggered as the result of a widget rebuild. It also provides builder callbacks to build mutually exclusive `busy/data/error` widget states.
+The `MainStream` widget uses the same underlying `StreamBuilderBase` used by `StreamBuilder` but also exposes additional `onData`/`onError`/`onDone` callbacks. These callbacks will **not** be retriggered as the result of a widget rebuild. It also provides builder callbacks to build mutually exclusive `busy/data/error` widget states.
 
 ```
 class Home extends StatelessWidget {
