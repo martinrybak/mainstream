@@ -2,23 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mainstream/mainstream.dart';
 
-// ignore_for_file: missing_required_param
-
 void main() {
-  group('Constructor', () {
-    testWidgets('throws assertion error if stream is null', (tester) async {
-      expect(() => MainStream(), throwsAssertionError);
-    });
-  });
-
   group('Builders', () {
     testWidgets('initially shows busyBuilder', (tester) async {
-      final text = 'busy';
+      const text = 'busy';
       final stream = Stream.value(0);
       final widget = MaterialApp(
         home: MainStream(
           stream: stream,
-          busyBuilder: (_) => Text(text),
+          busyBuilder: (_) => const Text(text),
         ),
       );
       await tester.pumpWidget(widget);
@@ -35,8 +27,8 @@ void main() {
     });
 
     testWidgets('initially shows dataBuilder if initialData is not null', (tester) async {
-      final initialData = 0;
-      final nextData = 1;
+      const initialData = 0;
+      const nextData = 1;
       final stream = Stream.value(nextData);
       final widget = MaterialApp(
         home: MainStream(
@@ -50,8 +42,8 @@ void main() {
     });
 
     testWidgets('shows dataBuilder after stream emits data', (tester) async {
-      final initialData = 0;
-      final nextData = 1;
+      const initialData = 0;
+      const nextData = 1;
       final stream = Stream.value(nextData);
       final widget = MaterialApp(
         home: MainStream(
@@ -66,12 +58,12 @@ void main() {
     });
 
     testWidgets('shows errorBuilder after stream emits error', (tester) async {
-      final error = 'error';
+      const error = 'error';
       final stream = Stream.error(error);
       final widget = MaterialApp(
         home: MainStream(
           stream: stream,
-          errorBuilder: (_, error) => Text(error),
+          errorBuilder: (_, error) => Text(error.toString()),
         ),
       );
       await tester.pumpWidget(widget);
@@ -82,7 +74,7 @@ void main() {
 
   group('Callbacks', () {
     testWidgets('onData called after stream emits data', (tester) async {
-      final data = 1;
+      const data = 1;
       final stream = Stream.value(data);
       final widget = MaterialApp(
         home: MainStream(
@@ -95,7 +87,7 @@ void main() {
     });
 
     testWidgets('onError called after stream emits error', (tester) async {
-      final error = 'error';
+      const error = 'error';
       final stream = Stream.error(error);
       final widget = MaterialApp(
         home: MainStream(

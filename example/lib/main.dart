@@ -39,15 +39,17 @@ class Home extends StatelessWidget {
   void _showAlert(BuildContext context, String text) {
     showDialog(
       context: context,
-      child: AlertDialog(
-        content: Text(text),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('OK'),
-            onPressed: () => Navigator.of(context).pop(),
-          )
-        ],
-      ),
+      builder: (_) {
+        return AlertDialog(
+          content: Text(text),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () => Navigator.of(context).pop(),
+            )
+          ],
+        );
+      },
     );
   }
 }
